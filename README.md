@@ -47,7 +47,7 @@ Make sure you rename your file to `.conf`. Then you can start your VPN like you 
 
 ### Bash terminal
 
-nano .bashrc
+vi .bashrc
 erase everything inside it (or better yet, make a backup of it cause that's a good habit: `cp ~/.bashrc ~/.bashrc.bak`)
 Copy this into your .bashrc file:
 
@@ -72,8 +72,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=-1
+HISTFILESIZE=-1
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -81,7 +81,7 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -164,9 +164,11 @@ alias em='emacs -nw'
 alias dd='dd status=progress'
 alias _='sudo'
 alias _i='sudo -i'
-alias please='sudo'
-alias fucking='sudo'
-alias chuck_norris_says='sudo'
+alias code='codium'
+alias updateall='sudo apt update && sudo apt upgrade -y'
+alias htb='sudo openvpn ~/colenk.ovpn'
+alias ghidra='~/tools/ghidra_9.1/ghidraRun'
+alias xclip='xclip -selection clipboard -r'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -194,10 +196,6 @@ Then reload your bashrc file:
 `source ~/.bashrc`
 
 > NOTE: Once you are connected to the HTB vpn, you'll see your IP and other info in your termianl. Otherwise, it'll just show your username/host and current working directory.
-
-> NOTE 2: Pwnbox now has an **updated** terminal. This is purely by choice so if you want to use what Pwnbox has, replace the "PS1" line above that has "xterm*|rxvt*)..." with this new *PS1* output:
-
-`\[\033[1;32m\]\342\224\200$([[ $(/opt/vpnbash.sh) == *"10."* ]] && echo "[\[\033[1;34m\]$(/opt/vpnserver.sh)\[\033[1;32m\]]\342\224\200[\[\033[1;37m\]$(/opt/vpnbash.sh)\[\033[1;32m\]]\342\224\200")[\[\033[1;37m\]\u\[\033[01;32m\]@\[\033[01;34m\]\h\[\033[1;32m\]]\342\224\200[\[\033[1;37m\]\w\[\033[1;32m\]]\$\[\e[0m\]`
 
 ### Powershell terminal (optional)
 
